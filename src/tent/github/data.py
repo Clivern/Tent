@@ -24,34 +24,34 @@ import yaml
 
 
 class Data():
-	"""This class parses repository .hippo.yml file"""
+    """This class parses repository .hippo.yml file"""
 
-	_items = {}
+    _items = {}
 
-	def __init__(self, file_path, property_name="data"):
-		self._file_path = file_path
-		self._property_name = property_name
+    def __init__(self, file_path, property_name="data"):
+        self._file_path = file_path
+        self._property_name = property_name
 
-	def parse(self):
-		data = yaml.safe_load(open(self._file_path))
+    def parse(self):
+        data = yaml.safe_load(open(self._file_path))
 
-		if "data" not in data.keys():
-			return
+        if "data" not in data.keys():
+            return
 
-		for value in self._parse_items("", data[self._property_name]):
-			self._items[value[0]] = value[1]
+        for value in self._parse_items("", data[self._property_name]):
+            self._items[value[0]] = value[1]
 
-	def _parse_items(self, parent="", sub_items={}):
-		for key, value in sub_items.items():
-			if isinstance(value, dict):
-				yield from self._parse_items(key if parent == "" else "{}.{}".format(parent, key), value)
-			else:
-				yield (key, value) if parent == "" else ("{}.{}".format(parent, key), value)
+    def _parse_items(self, parent="", sub_items={}):
+        for key, value in sub_items.items():
+            if isinstance(value, dict):
+                yield from self._parse_items(key if parent == "" else "{}.{}".format(parent, key), value)
+            else:
+                yield (key, value) if parent == "" else ("{}.{}".format(parent, key), value)
 
-	@classmethod
-	def from_file(cls, file_path, property_name="data"):
-		return Data(file_path, property_name)
+    @classmethod
+    def from_file(cls, file_path, property_name="data"):
+        return Data(file_path, property_name)
 
-	@property
-	def items(self):
-		return self._items
+    @property
+    def items(self):
+        return self._items
