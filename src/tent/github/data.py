@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import os
 import yaml
 
 
@@ -33,6 +34,9 @@ class Data():
         self._property_name = property_name
 
     def parse(self):
+        if not os.path.exists(self._file_path):
+            raise FileNotFoundError("File {} not exists".format(self._file_path))
+
         data = yaml.safe_load(open(self._file_path))
 
         if "data" not in data.keys():
