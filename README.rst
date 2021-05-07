@@ -12,3 +12,9 @@ Tent
 ====
 
     Github Automation Package in Python.
+
+
+Note
+====
+
+This project is created and maintained for Hippo. see https://github.com/hippo-sh
