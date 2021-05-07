@@ -27,8 +27,6 @@ from tent.github.data import Data
 
 
 def test_data():
-    """Data Class Tests"""
-
     dt = Data.from_file("{}/specs/.test_case_1.yml".format(os.getcwd()))
     dt.parse()
 
@@ -36,3 +34,9 @@ def test_data():
     assert dt.items["a.b.e.f"] == 'there'
     assert dt.items["a.b.e.k"] == ['a', 'b', 'c']
     assert dt.items["k.u.p"] == True
+
+
+def test_data_error():
+    with pytest.raises(FileNotFoundError):
+        dt = Data.from_file("{}/specs/.test_case_2.yml".format(os.getcwd()))
+        dt.parse()
