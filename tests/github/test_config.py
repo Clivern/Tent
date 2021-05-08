@@ -20,7 +20,26 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import os
+import pytest
 
-class Issue():
-    """Github Issue Automation Class"""
-    pass
+from tent.github.config import Config
+
+
+def test_config():
+    dt = Config.from_file("{}/specs/.test_case_1.yml".format(os.getcwd()))
+    dt.parse()
+
+    assert dt.data["a.b.c.d"] == 'hi'
+    assert dt.data["a.b.e.f"] == 'there'
+    assert dt.data["a.b.e.k"] == ['a', 'b', 'c']
+    assert dt.data["k.u.p"] == True
+    assert dt.rule == {}
+    assert dt.bot == {}
+    assert dt.workflow == {}
+
+
+def test_data_error():
+    with pytest.raises(FileNotFoundError):
+        dt = Config.from_file("{}/specs/.test_case_2.yml".format(os.getcwd()))
+        dt.parse()

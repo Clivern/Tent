@@ -21,6 +21,5 @@
 # SOFTWARE.
 
 
-class PullRequest():
-    """Github PullRequest Automation Class"""
+class Playbook():
     pass

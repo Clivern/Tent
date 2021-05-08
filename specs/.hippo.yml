@@ -18,15 +18,9 @@ data:
   admins:
     - clivern
     - hippo
-  a:
-    b:
-      c:
-        d: 1
-      e:
-        f: 2
 
 
-rules:
+rule:
   #---------------------- Label ----------------------------#
   # Create a Label
   - name: create kind/issue label

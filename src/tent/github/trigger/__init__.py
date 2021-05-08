@@ -19,24 +19,3 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
-import os
-import pytest
-
-from tent.github.data import Data
-
-
-def test_data():
-    dt = Data.from_file("{}/specs/.test_case_1.yml".format(os.getcwd()))
-    dt.parse()
-
-    assert dt.items["a.b.c.d"] == 'hi'
-    assert dt.items["a.b.e.f"] == 'there'
-    assert dt.items["a.b.e.k"] == ['a', 'b', 'c']
-    assert dt.items["k.u.p"] == True
-
-
-def test_data_error():
-    with pytest.raises(FileNotFoundError):
-        dt = Data.from_file("{}/specs/.test_case_2.yml".format(os.getcwd()))
-        dt.parse()

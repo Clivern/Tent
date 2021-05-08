@@ -20,7 +20,64 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import os
+import yaml
+
 
 class Config():
-    """Github Config Class"""
-    pass
+    """This class parses repository .hippo.yml file"""
+
+    _result = {}
+    _data = {}
+    _rule = {}
+    _bot = {}
+    _workflow = {}
+
+    def __init__(self, file_path):
+        self._file_path = file_path
+
+    def parse(self):
+        if not os.path.exists(self._file_path):
+            raise FileNotFoundError("File {} not exists".format(self._file_path))
+
+        self._result = yaml.safe_load(open(self._file_path))
+
+        if "rule" in self._result.keys():
+            self._rule = self._result["rule"]
+
+        if "bot" in self._result.keys():
+            self._bot = self._result["bot"]
+
+        if "workflow" in self._result.keys():
+            self._workflow = self._result["workflow"]
+
+        if "data" in self._result.keys():
+            for value in self._parse_item("", self._result["data"]):
+                self._data[value[0]] = value[1]
+
+    def _parse_item(self, parent="", sub_items={}):
+        for key, value in sub_items.items():
+            if isinstance(value, dict):
+                yield from self._parse_item(key if parent == "" else "{}.{}".format(parent, key), value)
+            else:
+                yield (key, value) if parent == "" else ("{}.{}".format(parent, key), value)
+
+    @classmethod
+    def from_file(cls, file_path):
+        return Config(file_path)
+
+    @property
+    def data(self):
+        return self._data
+
+    @property
+    def rule(self):
+        return self._rule
+
+    @property
+    def bot(self):
+        return self._bot
+
+    @property
+    def workflow(self):
+        return self._workflow

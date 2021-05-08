@@ -21,5 +21,6 @@
 # SOFTWARE.
 
 
-class Rules():
+class Parser():
+    """Parse a Github HTTP Calls & Return a Command or an Event"""
     pass
