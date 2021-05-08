@@ -2,4 +2,4 @@
 Contributors
 ============
 
-* Ahmed <hello@clivern.com>
+* clivern <hello@clivern.com>
