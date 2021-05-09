@@ -1,6 +1,6 @@
-PYTHON ?= python
-PIP ?= $(PYTHON) -m pip
-TOX ?= tox
+py ?= python
+pip ?= $(py) -m pip
+tox ?= tox
 
 
 help: Makefile
@@ -14,17 +14,17 @@ help: Makefile
 ## config: Install needed dependencies.
 .PHONY: config
 config:
-	$(PIP) install twine
-	$(PIP) install wheel
-	$(PIP) install tox
-	$(PIP) install setuptools-scm
+	$(pip) install twine
+	$(pip) install wheel
+	$(pip) install tox
+	$(pip) install setuptools-scm
 
 
 ## test: Run test case.
 .PHONY: test
 test:
 	@echo "\n==> Run Test Cases:"
-	$(TOX)
+	$(tox)
 
 
 ## ci: Run all CI checks.
@@ -36,25 +36,25 @@ ci: test
 ## build: Build the package.
 .PHONY: build
 build:
-	$(TOX) -e clean
-	$(TOX) -e build
+	$(tox) -e clean
+	$(tox) -e build
 
 
 ## version: Get latest version
 .PHONY: version
 version:
-	$(PYTHON) setup.py --version
+	$(py) setup.py --version
 
 
 ## release: Release to PyPi
 release:
-	$(PYTHON) -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+	$(py) -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
 
 
 ## install: Install the package locally
 .PHONY: install
 install:
-	$(PYTHON) setup.py install
+	$(py) setup.py install
 
 
 .PHONY: ci
