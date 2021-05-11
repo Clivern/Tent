@@ -24,3 +24,29 @@ data:
   k:
     u:
       p: true
+
+rule:
+  - name: create kind/issue label
+    label:
+      state: exists
+      title: kind/issue
+      description: application bugs
+      color: red
+
+bot:
+  acl:
+    groups:
+      -
+        name: lead
+        permissions:
+          - issues_management
+          - prs_management
+          - label_management
+
+workflow:
+  first_contribution:
+    active_for:
+      - prs
+      - issues
+    enabled: true
+    message: 'Hey there! Thanks for your first contribution'

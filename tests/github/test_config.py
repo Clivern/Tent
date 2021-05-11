@@ -34,10 +34,9 @@ def test_config():
     assert dt.data["a.b.e.f"] == 'there'
     assert dt.data["a.b.e.k"] == ['a', 'b', 'c']
     assert dt.data["k.u.p"] == True
-    assert dt.rule == {}
-    assert dt.bot == {}
-    assert dt.workflow == {}
-
+    assert dt.rule[0]['name'] == "create kind/issue label"
+    assert dt.bot['acl']['groups'][0]['name'] == 'lead'
+    assert dt.workflow['first_contribution']['active_for'][0] == 'prs'
 
 def test_data_error():
     with pytest.raises(FileNotFoundError):

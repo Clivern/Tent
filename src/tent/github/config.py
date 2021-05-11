@@ -34,9 +34,36 @@ class Config():
     _workflow = {}
 
     def __init__(self, file_path):
+        """Class constructor"""
         self._file_path = file_path
 
+    @classmethod
+    def from_file(cls, file_path):
+        """Creates an instance from a file path"""
+        return Config(file_path)
+
+    @property
+    def data(self):
+        """Get data property"""
+        return self._data
+
+    @property
+    def rule(self):
+        """Get rule property"""
+        return self._rule
+
+    @property
+    def bot(self):
+        """Get bot property"""
+        return self._bot
+
+    @property
+    def workflow(self):
+        """Get workflow property"""
+        return self._workflow
+
     def parse(self):
+        """Parse the repo config file"""
         if not os.path.exists(self._file_path):
             raise FileNotFoundError("File {} not exists".format(self._file_path))
 
@@ -61,23 +88,3 @@ class Config():
                 yield from self._parse_item(key if parent == "" else "{}.{}".format(parent, key), value)
             else:
                 yield (key, value) if parent == "" else ("{}.{}".format(parent, key), value)
-
-    @classmethod
-    def from_file(cls, file_path):
-        return Config(file_path)
-
-    @property
-    def data(self):
-        return self._data
-
-    @property
-    def rule(self):
-        return self._rule
-
-    @property
-    def bot(self):
-        return self._bot
-
-    @property
-    def workflow(self):
-        return self._workflow
