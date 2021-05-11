@@ -21,5 +21,5 @@
 # SOFTWARE.
 
 
-class ExprParser():
+class CloseIssue():
     pass
