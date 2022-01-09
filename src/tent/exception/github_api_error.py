@@ -21,6 +21,6 @@
 # SOFTWARE.
 
 
-class Config():
-	"""Github Config Class"""
-	pass
+class GithubApiError(Exception):
+    """Github API Error"""
+    pass

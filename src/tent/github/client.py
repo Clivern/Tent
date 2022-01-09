@@ -20,7 +20,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from github import Github
 
-class Config():
-	"""Github Config Class"""
-	pass
+
+class Client():
+	"""Github Client Class"""
+
+	@staticmethod
+	def client(cls, access_token):
+		"""
+		Get a github client
+
+		Args:
+			access_token: the access token
+
+		Returns:
+			The github client instance
+		"""
+		return Github(access_token)
