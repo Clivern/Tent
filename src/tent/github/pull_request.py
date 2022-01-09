@@ -22,5 +22,5 @@
 
 
 class PullRequest():
-	"""Github PullRequest Automation Class"""
-	pass
+    """Github PullRequest Automation Class"""
+    pass

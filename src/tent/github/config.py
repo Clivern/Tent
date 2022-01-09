@@ -22,5 +22,5 @@
 
 
 class Config():
-	"""Github Config Class"""
-	pass
+    """Github Config Class"""
+    pass

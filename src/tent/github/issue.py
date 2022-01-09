@@ -22,5 +22,5 @@
 
 
 class Issue():
-	"""Github Issue Automation Class"""
-	pass
+    """Github Issue Automation Class"""
+    pass

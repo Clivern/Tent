@@ -33,16 +33,16 @@ from tent.exception.github_api_error import GithubApiError
 
 
 class App():
-	"""Github App Class"""
+    """Github App Class"""
 
-	def __init__(self, api_url="https://api.github.com"):
-		"""
-		Class Constructor
+    def __init__(self, api_url="https://api.github.com"):
+        """
+        Class Constructor
 
-		Args:
-			api_url: the github API URL
-		"""
-		self._api_url = api_url
+        Args:
+            api_url: the github API URL
+        """
+        self._api_url = api_url
         self._logger = logging.getLogger(__name__)
 
     def is_token_expired(self, expire_at, drift_in_minutes=10):
@@ -50,11 +50,11 @@ class App():
         Check if token expired or not
 
         Args:
-        	expire_at: the token expire date
-        	drift_in_minutes: a drift in minutes
+            expire_at: the token expire date
+            drift_in_minutes: a drift in minutes
 
         Returns:
-        	Whether the token expired or not
+            Whether the token expired or not
         """
         expire_at_dt = parser.isoparse(expire_at)
         now = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(minutes=drift_in_minutes)
@@ -68,12 +68,12 @@ class App():
         Access token is valid for one hour
 
         Args:
-        	secret_key: The secret key
-        	app_id: the application ID
-        	installation_id: the installation ID
+            secret_key: The secret key
+            app_id: the application ID
+            installation_id: the installation ID
 
         Returns:
-        	The access token data
+            The access token data
         """
         headers = {
             "Authorization": "Bearer {}".format(self._get_jwt_token(secret_key, app_id)),
@@ -111,11 +111,11 @@ class App():
         Get JWT token
 
         Args:
-        	secret_key: the secret key
-        	app_id: The application ID
+            secret_key: the secret key
+            app_id: The application ID
 
         Returns:
-        	The JWT token
+            The JWT token
         """
         return jwt.encode({
             'iat': calendar.timegm(time.gmtime()) - 60,

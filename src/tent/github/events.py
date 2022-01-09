@@ -22,5 +22,5 @@
 
 
 class Events():
-	"""Github Events Automation Class"""
-	pass
+    """Github Events Automation Class"""
+    pass

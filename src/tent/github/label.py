@@ -22,5 +22,5 @@
 
 
 class Label():
-	"""Github Label Automation Class"""
-	pass
+    """Github Label Automation Class"""
+    pass

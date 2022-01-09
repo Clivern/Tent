@@ -24,17 +24,17 @@ from github import Github
 
 
 class Client():
-	"""Github Client Class"""
+    """Github Client Class"""
 
-	@staticmethod
-	def client(cls, access_token):
-		"""
-		Get a github client
+    @staticmethod
+    def client(cls, access_token):
+        """
+        Get a github client
 
-		Args:
-			access_token: the access token
+        Args:
+            access_token: the access token
 
-		Returns:
-			The github client instance
-		"""
-		return Github(access_token)
+        Returns:
+            The github client instance
+        """
+        return Github(access_token)

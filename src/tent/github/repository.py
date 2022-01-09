@@ -22,5 +22,5 @@
 
 
 class Repository():
-	"""Github Repository Automation Class"""
-	pass
+    """Github Repository Automation Class"""
+    pass
